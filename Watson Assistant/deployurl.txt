@@ -1,0 +1,6 @@
+The Chatbot has been deployed on following link:
+https://assistant-chat-eu-gb.watsonplatform.net/web/public/2c7f3c9e-9339-4acb-903e-f39811289783
+
+Instructions: As of now only configured for earthquake.
+
+NOTE: This is just a sample conversation bot without backend for representation of the idea.
