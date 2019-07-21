@@ -1,0 +1,689 @@
+{
+  "name": "DisasterBot",
+  "intents": [
+    {
+      "intent": "Critical",
+      "examples": [
+        {
+          "text": "critical"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "safe",
+      "examples": [
+        {
+          "text": "safe"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "injuries",
+      "examples": [
+        {
+          "text": "injuries"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "reply",
+      "examples": [
+        {
+          "text": "yes"
+        },
+        {
+          "text": "no"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "shelter",
+      "examples": [
+        {
+          "text": "shelter"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Earthquake",
+      "examples": [
+        {
+          "text": "I am stuck in an Earthquake"
+        },
+        {
+          "text": "Earthquake"
+        },
+        {
+          "text": "Earthquake Help"
+        },
+        {
+          "text": "Lolnagar"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "hospital",
+      "examples": [
+        {
+          "text": "hospital"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Normal",
+      "examples": [
+        {
+          "text": "Normal"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "rescue",
+      "examples": [
+        {
+          "text": "rescue"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Food",
+      "examples": [
+        {
+          "text": "food"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "condition",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "critical",
+          "synonyms": [
+            "fatal",
+            "crucial",
+            "serious"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "normal",
+          "synonyms": [
+            "normally",
+            "regular",
+            "ordinary"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-percentage",
+      "values": []
+    },
+    {
+      "entity": "sys-date",
+      "values": []
+    },
+    {
+      "entity": "sys-person",
+      "values": []
+    },
+    {
+      "entity": "sys-currency",
+      "values": []
+    },
+    {
+      "entity": "sys-location",
+      "values": []
+    },
+    {
+      "entity": "sys-time",
+      "values": []
+    },
+    {
+      "entity": "sys-number",
+      "values": []
+    }
+  ],
+  "language": "en",
+  "metadata": {
+    "api_version": {
+      "major_version": "v1",
+      "minor_version": "2018-07-10"
+    }
+  },
+  "description": "",
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_29_1563633359706",
+      "event_name": "focus",
+      "dialog_node": "handler_31_1563633359706",
+      "previous_sibling": "handler_30_1563633359706"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_29_1563633359706",
+      "context": {
+        "time": "@sys-time"
+      },
+      "conditions": "@sys-time",
+      "event_name": "input",
+      "dialog_node": "handler_30_1563633359706"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_1_1563631869495",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1563631985772",
+      "previous_sibling": "node_3_1563631985773"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1563631869495",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_3_1563631985773",
+      "previous_sibling": "node_7_1563632193573"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1563631869495",
+      "dialog_node": "slot_4_1563631985789",
+      "previous_sibling": "handler_2_1563631985772"
+    },
+    {
+      "type": "standard",
+      "title": "Condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is the Condition? Critical or Normal?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1563631869495",
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#reply",
+      "dialog_node": "node_7_1563632193573",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_13_1563632296484",
+      "conditions": "@condition",
+      "event_name": "input",
+      "dialog_node": "handler_14_1563632296484",
+      "previous_sibling": "handler_15_1563632296484"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": "What is the emergency condition ? Critical or Normal?"
+      },
+      "parent": "slot_13_1563632296484",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_15_1563632296484"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1563632193573",
+      "variable": "$condition",
+      "dialog_node": "slot_13_1563632296484",
+      "previous_sibling": "node_5_1563635171275"
+    },
+    {
+      "type": "event_handler",
+      "parent": "node_7_1563632193573",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1563632207697",
+      "previous_sibling": "slot_29_1563633359706"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1563632193573",
+      "variable": "$date",
+      "dialog_node": "slot_19_1563632362174",
+      "previous_sibling": "slot_13_1563632296484"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1563632193573",
+      "variable": "$time",
+      "dialog_node": "slot_29_1563633359706",
+      "previous_sibling": "slot_19_1563632362174"
+    },
+    {
+      "type": "response_condition",
+      "output": {},
+      "parent": "node_7_1563632193573",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_5_1563635171275"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_19_1563632362174",
+      "event_name": "focus",
+      "dialog_node": "handler_21_1563632362174",
+      "previous_sibling": "handler_20_1563632362174"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_19_1563632362174",
+      "context": {
+        "date": "@sys-date"
+      },
+      "conditions": "@sys-date",
+      "event_name": "input",
+      "dialog_node": "handler_20_1563632362174"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1563631985789",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1563631985789",
+      "previous_sibling": "handler_5_1563631985789"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_4_1563631985789",
+      "event_name": "input",
+      "dialog_node": "handler_5_1563631985789"
+    },
+    {
+      "type": "standard",
+      "title": "Rescue",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "The Rescue team has been informed and your Location has been sent with your number."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 2000,
+            "typing": true,
+            "response_type": "pause"
+          },
+          {
+            "values": [
+              {
+                "text": "If a person is bleeding, put direct pressure on the wound. Use clean gauze or cloth, if available.\nIf a person is not breathing, administer rescue breathing.\nIf a person has no pulse, begin CPR (cardiopulmonary resuscitation).\nDo not move seriously injured persons unless they are in immediate danger of further injury.\nCover injured persons with blankets or additional clothing to keep them warm."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#rescue",
+      "dialog_node": "node_11_1563643416268",
+      "previous_sibling": "node_10_1563643414317"
+    },
+    {
+      "type": "standard",
+      "title": "Normal",
+      "output": {
+        "generic": [
+          {
+            "title": "What do you need help with?",
+            "options": [
+              {
+                "label": "Food Supplies",
+                "value": {
+                  "input": {
+                    "text": "Food"
+                  }
+                }
+              },
+              {
+                "label": "Shelter",
+                "value": {
+                  "input": {
+                    "text": "Shelter"
+                  }
+                }
+              },
+              {
+                "label": "Injuries",
+                "value": {
+                  "input": {
+                    "text": "Injuries"
+                  }
+                }
+              },
+              {
+                "label": "Find Safe zone",
+                "value": {
+                  "input": {
+                    "text": "safe"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#Normal",
+      "dialog_node": "node_5_1563640458939",
+      "previous_sibling": "node_1_1563631869495"
+    },
+    {
+      "type": "standard",
+      "title": "shelter",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your Location and Number has been sent to the rescue team."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#shelter",
+      "dialog_node": "node_8_1563642300250",
+      "previous_sibling": "node_7_1563642254930"
+    },
+    {
+      "type": "standard",
+      "title": "food",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your Location and Number has been sent to the rescue team."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#Food",
+      "dialog_node": "node_7_1563642254930",
+      "previous_sibling": "node_11_1563643416268"
+    },
+    {
+      "type": "standard",
+      "title": "hospital",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Enrouting to Near by hospital"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#hospital",
+      "dialog_node": "node_10_1563643414317",
+      "previous_sibling": "node_12_1563643611078"
+    },
+    {
+      "type": "standard",
+      "title": "Location",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Should I Access your Location for help?"
+              },
+              {
+                "text": "Is It Fine If I Access your Location?"
+              },
+              {
+                "text": "I will need to access your location for providing help."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#Earthquake",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1563631869495",
+      "digress_out": "allow_all",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Safe zone",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Calculating nearest Safe zone. Please Wait ['Control Transfers to backend']"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "time": 3000,
+            "typing": true,
+            "response_type": "pause"
+          },
+          {
+            "values": [
+              {
+                "text": "Nearest Safe Zone Located and Now Enrouting !"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#safe",
+      "dialog_node": "node_12_1563643611078",
+      "previous_sibling": "node_6_1563640493253"
+    },
+    {
+      "type": "standard",
+      "title": "Injuries",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Your Location and Number has been sent to the rescue team."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "values": [
+              {
+                "text": "If a person is bleeding, put direct pressure on the wound. Use clean gauze or cloth, if available.\nIf a person is not breathing, administer rescue breathing.\nIf a person has no pulse, begin CPR (cardiopulmonary resuscitation).\nDo not move seriously injured persons unless they are in immediate danger of further injury.\nCover injured persons with blankets or additional clothing to keep them warm."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#injuries",
+      "dialog_node": "node_9_1563642311856",
+      "previous_sibling": "node_8_1563642300250"
+    },
+    {
+      "type": "standard",
+      "title": "Critical",
+      "output": {
+        "generic": [
+          {
+            "title": "Are You able to move ?",
+            "options": [
+              {
+                "label": "Find Near By Hospitals",
+                "value": {
+                  "input": {
+                    "text": "Hospital"
+                  }
+                }
+              },
+              {
+                "label": "Call Rescue team for help",
+                "value": {
+                  "input": {
+                    "text": "Rescue"
+                  }
+                }
+              },
+              {
+                "label": "Find Safe Zone",
+                "value": {
+                  "input": {
+                    "text": "safe"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "#Critical",
+      "dialog_node": "node_6_1563640493253",
+      "previous_sibling": "node_5_1563640458939"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_9_1563642311856"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "You have Reached the Emergency Disaster Bot. what disaster are you stuck in?"
+              },
+              {
+                "text": "This is the Emergency Disaster Assistance. What Disaster are you Facing?"
+              },
+              {
+                "text": "Emergency Disaster bot is here,What Disaster are you Stuck in?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "welcome",
+      "digress_in": "does_not_return",
+      "dialog_node": "Welcome",
+      "digress_out": "allow_all"
+    }
+  ],
+  "workspace_id": "213d1fd3-35a3-4f84-8407-fbfcd1c4fb82",
+  "counterexamples": [],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    }
+  },
+  "learning_opt_out": false,
+  "status": "Available"
+}
